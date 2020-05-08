@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block additional_head %}
+{% endblock %}
+
+{% block additional_body %}
+    <p>Welcome back to the Home page
+
+    {% if error %}
+        <p><h4>{{ error }}</h4>
+    {% endif %}
+
+    <p>
+    <p><a href="/admin/"><button type="button" class="btn btn-primary">Admin</button></a>
+    <p><a href="/api/"><button type="button" class="btn btn-primary">API</button></a>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block additional_head %}
+    <title>Logging</title>
+{% endblock %}
+{% block heading %}Logging{% endblock %}
+{% block additional_body %}
+    <h2>List of Logs</h2>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            {% if log_list %}
+                <tr>
+                    <th>Log</th><th>func_name</th>
+                    <th>level</th><th>message</th><th>(id)</th>
+                </tr>
+                {% for val in log_list %}
+                    <tr>
+                        <td>{{ val.date_creation }}</td><td>{{ val.func_name }}</td>
+                        <td>{{ val.level }}</td><td>{{ val.message }}</td><td>{{ val.id }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+    <p><a href="{% url 'logs_index_page' %}"><button type="button" class="btn btn-primary">Back</button></a>
+    <a href="{% url 'home_page' %}"><button type="button" class="btn btn-primary">Home</button></a>
+
+{% endblock %}

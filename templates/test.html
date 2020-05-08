@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block additional_head %}
+{% endblock %}
+
+{% block additional_body %}
+    Welcome back to the Test page
+
+    {% if error %}
+        <p><h4>{{ error }}</h4>
+    {% endif %}
+
+    <p><a href="{% url 'index_page' %}"><input type=button value="Index"></a>
+
+{% endblock %}
