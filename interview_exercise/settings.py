@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'gen_lib.apps.GenLibConfig',
     'logs.apps.LogsConfig',
     'api.apps.ApiConfig',
+    'insurance_companies.apps.InsuranceCompaniesConfig',
+    'insurance_assessor.apps.InsuranceAssessorConfig',
     # Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',

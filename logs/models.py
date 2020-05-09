@@ -1,8 +1,12 @@
+import logging
+
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 from gen_lib.abstract_datetime import DateTimeRecord
+
+log = logging.getLogger(__name__)
 
 
 class StreamLogging(DateTimeRecord):
@@ -148,10 +152,10 @@ class SmsLogging(DateTimeRecord):
                              on_delete=models.PROTECT, db_index=True,
                              blank=True, null=True,
                              related_name='sms_logging_user')
-    from_number = models.CharField('From number', max_length=10,
+    from_number = models.CharField('From number', max_length=15,
                                     db_column='from_number', blank=True,
                                     null=True)
-    to_number = models.CharField('To number', max_length=10,
+    to_number = models.CharField('To number', max_length=15,
                                   db_column='to_number', blank=True,
                                   null=True)
     message = models.CharField('Message', db_column='message', max_length=255,
@@ -176,26 +180,29 @@ class SmsLogging(DateTimeRecord):
             TWILLIO_AUTH_TOKEN, TWILLIO_FROM_NUMBER
 
         if text_message not in [None, ""] and number not in [None, ""]:
-            client = Client(TWILLIO_ACCOUNT, TWILLIO_AUTH_TOKEN)
+            try:
+                client = Client(TWILLIO_ACCOUNT, TWILLIO_AUTH_TOKEN)
+            except Exception as err:
+                log.error(err)
+            else:
+                sms_message = client.messages.create(
+                    body=text_message,
+                    from_=TWILLIO_FROM_NUMBER,
+                    to=number
+                )
 
-            sms_message = client.messages.create(
-                body=text_message,
-                from_=TWILLIO_FROM_NUMBER,
-                to=number
-            )
+                sms_id = None
+                if sms_message.sid:
+                    sms_id = sms_message.sid
 
-            sms_id = None
-            if sms_message.sid:
-                sms_id = sms_message.sid
-
-            log_obj = self(
-                user=user_obj,
-                from_number=TWILLIO_FROM_NUMBER,
-                to_number=number,
-                message=text_message,
-                sms_id=sms_id
-            )
-            log_obj.save()
+                log_obj = self(
+                    user=user_obj,
+                    from_number=TWILLIO_FROM_NUMBER,
+                    to_number=number,
+                    message=text_message,
+                    sms_id=sms_id
+                )
+                log_obj.save()
 
 
 class BlockIP(DateTimeRecord):

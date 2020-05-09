@@ -132,12 +132,14 @@ dmypy.json
 .vagrant/
 
 # App
-logs/migrations/*.py
-!logs/migrations/__init__.py
-gen_lib/migrations/*.py
-!gen_lib/migrations/__init__.py
-api/migrations/*.py
-!api/migrations/__init__.py
+#logs/migrations/*.py
+#!logs/migrations/__init__.py
+#gen_lib/migrations/*.py
+#!gen_lib/migrations/__init__.py
+#api/migrations/*.py
+#!api/migrations/__init__.py
+#insurance_companies/migrations/*.py
+#!insurance_companies/migrations/__init__.py
 
 # Elastic Beanstalk Files
 #.elasticbeanstalk/*
@@ -148,12 +150,13 @@ api/migrations/*.py
 .ansible/site.retry
 
 # media
-media/*.*
-media/
-!media/test.txt
+#media/*.*
+#media/
+#!media/test.txt
 
 # root
 notes.txt
 
 # Pycharm
+.idea/*
 .idea/
