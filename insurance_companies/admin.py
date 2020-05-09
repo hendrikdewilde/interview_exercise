@@ -17,7 +17,7 @@ class InsuranceAdmin(admin.ModelAdmin):
         'user_creation', 'user_modified',
     ]
     list_display = ('name', 'phone_number', 'date_creation',)
-    list_filter = ('name', 'date_creation', )
+    list_filter = ('date_creation', )
     search_fields = ['name']
     actions = None
 
@@ -45,7 +45,7 @@ class InsuranceConsultantAdmin(admin.ModelAdmin):
         'user_creation', 'user_modified',
     ]
     list_display = ('name', 'phone_number', 'insurance', 'linked_user', 'date_creation',)
-    list_filter = ('name', 'insurance', 'linked_user', 'date_creation', )
+    list_filter = ('insurance', 'linked_user', 'date_creation', )
     search_fields = ['name', 'insurance']
     actions = None
 

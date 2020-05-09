@@ -17,7 +17,7 @@ class AssessorAdmin(admin.ModelAdmin):
         'user_creation', 'user_modified',
     ]
     list_display = ('name', 'phone_number', 'linked_user', 'date_creation',)
-    list_filter = ('name', 'linked_user', 'date_creation', )
+    list_filter = ('linked_user', 'date_creation', )
     search_fields = ['name', 'linked_user']
     actions = None
 

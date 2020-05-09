@@ -84,7 +84,7 @@ class UserLoggingAdmin(admin.ModelAdmin):
         'ip_address', 'host', 'success',
     ]
     list_display = ('username', 'success', 'date_creation', )
-    list_filter = ('username', 'success', )
+    list_filter = ('success', )
     search_fields = ['username', 'date_creation']
     actions = None
 
@@ -116,8 +116,8 @@ class SmsLoggingAdmin(admin.ModelAdmin):
         'sms_id',
     ]
     list_display = ('to_number', 'sms_id', 'date_creation', )
-    list_filter = ('to_number', 'sms_id', )
-    search_fields = ['to_number', 'date_creation']
+    list_filter = ('date_creation', )
+    search_fields = ['to_number', 'sms_id', 'date_creation']
     actions = None
 
     # This will help you to disbale add functionality
