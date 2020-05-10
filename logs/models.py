@@ -96,7 +96,7 @@ class ApiLogging(DateTimeRecord):
 
     @staticmethod
     def log_api_request(self, request=None):
-        from gen_lib.functions import get_client_ip, get_user_request
+        from gen_lib.utils import get_client_ip, get_user_request
 
         user_obj = get_user_request(request)
 

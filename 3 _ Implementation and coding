@@ -1,0 +1,49 @@
+Still a working progress.
+
+
+Steps:
+
+1. Create Basic Django Application
+Created
+    - interview_exercise
+
+2. Create General lib module
+Added
+   - gen_lib module
+
+3. Create Log module
+Added
+    - StreamLogging class
+    - UserLogging class
+    - BlockIP class
+    - SafeIP
+    - ApiLogging class
+
+4. Create Insurance Companies module
+Added
+    - Insurance class
+    - InsuranceConsultant class
+
+5. Create Insurance Assessor module
+Added
+    - Assessor class
+
+6. Create Insurance Claims module
+Added
+    - Client class
+    - Case class
+    - Document class
+To Do
+    - DocumentNote class
+
+7. Create API endpoint
+Added
+    - API endpoint
+To Do
+    - Wait for feedback on what Different endpoints are needed.
+
+8. Add SMS and Web call functions
+Added
+    - SmsLogging class
+To Do
+    - CallLogging class

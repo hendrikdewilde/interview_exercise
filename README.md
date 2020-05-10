@@ -10,3 +10,6 @@ python manage.py createcachetable
 
 ## Setup admin user
 python manage.py createsuperuser
+
+## Initial setup
+python manage.py initial_setup

@@ -3,7 +3,7 @@ import logging
 from django.contrib.auth.signals import user_logged_in, user_login_failed
 from django.dispatch import receiver
 
-from gen_lib.functions import get_client_ip, get_client_session_id, \
+from gen_lib.utils import get_client_ip, get_client_session_id, \
     get_user_obj_by_name_db
 from logs.models import UserLogging
 

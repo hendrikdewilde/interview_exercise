@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'insurance_companies.apps.InsuranceCompaniesConfig',
     'insurance_assessor.apps.InsuranceAssessorConfig',
-    'cases.apps.CasesConfig',
+    'claims.apps.ClaimsConfig',
     # Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',

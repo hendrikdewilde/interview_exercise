@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.schemas import ManualSchema
 from rest_framework.views import APIView
 
-from gen_lib.functions import get_user_obj_by_name_db, get_client_ip
+from gen_lib.utils import get_user_obj_by_name_db, get_client_ip
 from logs.models import UserLogging
 
 log = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ class ObtainAuthTokenCustom(APIView):
 
             user_obj = get_user_obj_by_name_db(user)
 
-            login_obj = UserLogin()
+            login_obj = UserLogging()
             login_obj.username = user or None
             login_obj.user = user_obj or None
             login_obj.access_token = token.key

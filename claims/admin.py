@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.urls import path
 from django.utils.safestring import mark_safe
 
-from cases.models import Case, Client, Document
+from claims.models import Case, Client, Document
 
 
 class ClientAdmin(admin.ModelAdmin):

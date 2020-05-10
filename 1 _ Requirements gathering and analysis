@@ -1,0 +1,29 @@
+- Who is going to be the end-user of the software?
+Mainly Assessors and sometimes Insurance consultants.
+
+- How will they use it?
+It must be web base so that they can access it from anywhere on their laptops
+or tablets.
+
+- What will be the input and output of the system?
+The input:
+Insurances Company detail
+Insurance Consultants detail
+Insurance Assessors detail
+Claims/Cases detail
+Client detail
+Upload documents to specific insurance claims.
+
+The output:
+Display documents
+Display comments on documents
+
+Bonus output:
+Send sms to client
+Web call client to log call history
+Add API endpoint
+
+- What problem will it solve?
+They need an application where they can manage the documents allocated to a
+specific insurance claim by assessors and allow Insurance consultants to
+view only the documents and add comments.

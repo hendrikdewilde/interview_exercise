@@ -1,0 +1,252 @@
+- What language will we use?
+Will use Python with Django
+
+- Planning to do?
+1. Create Basic Django Application
+2. Create General lib module
+3. Create Log module
+4. Create Insurance Companies module
+5. Create Insurance Assessor module
+6. Create Insurance Claims module
+7. Create API endpoint
+8. Add SMS and Web call functions
+
+Descriptions:
+1.
+We will use Python 3 with Django 2.2
+To save time I wil use Django Admin App and not create my own views and
+templates.
+We will add middleware to Block unwanted IP Addresses that try to access the
+application. Use Cache to store te IP addresses or Database or both.
+Because this is a small application we will use DatabaseCache.
+We will use sqlite for development, but in production we will use PostgreSQL.
+We need to to add static and media folders.
+Need to setup static to serve all css, js, images and admin files.
+We need to add a functionality to automatically add AWS EC2 host IP Addresses.
+Need to add initial setup script. No use for it now, but will use it later.
+
+2.
+# We will need a General lib module that will have all abstract classes, utils
+and validators we will need thru the application.
+We will call this module gen_lib.
+
+# We want all the tables in the application to have the following 4 fields for
+better data history.
+- creation date
+To auto update if row is inserted.
+- modified date
+To auto update if row is updated.
+- creation user
+To update if row is inserted.
+- modified user
+To update if row is updated.
+
+# This classes will be used by all model classes.
+For this we will create 2 abstract classes named
+DateTimeRecord
+- date_creation
+- date_modified
+
+UserRecord
+- user_creation
+- user_modified
+
+# I will add the default utils and validators that I normally use.
+I am not sure if I will use them now, but I like to add them and then they
+are here if I need them.
+
+3.
+# We need a Log module that will keep all the logging tables together.
+We will call this module logs.
+
+# What do we need to log?
+- Stream log data.
+Will store default django stream data.
+We need to create a logging.Handler and add the setup to it in settings.
+- User logging.
+Will store all the user login info.
+We need to create signals on
+    - receiver(user_logged_in)
+    - receiver(user_login_failed)
+- IP Addresses that is blocked.
+Will store all the IP addresses collected by the middleware.
+- IP Addresses that is safe.
+Will need a table to set safe ip addresses for the middleware that can't be
+blocked.
+
+# DB Tables
+Stream Logging (Inhered DateTimeRecord)
+- level
+- traceback
+- error time
+- file name
+- function name
+- message
+- process id
+- process name
+- process args
+- ip address
+
+User Logging (Inhered DateTimeRecord)
+- user (FK)
+- username
+- session id
+- api access token
+- ip address
+- host ip address
+- success
+
+Block IP (Inhered DateTimeRecord)
+- ip address
+- reason for block
+
+Safe IP (Inhered DateTimeRecord)
+- ip address
+- reason for allow
+
+# Admin view setup
+
+4. Create Insurance Companies module
+# We need to create a module that keep all the insurance company detail and
+tables together.
+We will call this module insurance_companies.
+
+# What do we need to log?
+- Insurance companies
+Will store all the Insurance companies info.
+- Insurance consultant
+Will store all the Insurance consultant info.
+Will need the ability to linked to a specific user.
+
+# DB Tables
+Insurance (Inhered DateTimeRecord, UserRecord)
+- name
+- phone number
+
+Insurance Consultant (Inhered DateTimeRecord, UserRecord)
+- name
+- phone number
+- insurance (FK)
+- linked user (OTO)
+
+# Admin view setup
+
+5.
+# We need to create a module that keep all the insurance assessor detail and
+tables together.
+We will call this module insurance_assessor.
+
+# What do we need to log?
+- Insurance assessor
+Will store all the Insurance assessor info.
+Will need the ability to linked to a specific user.
+
+# DB Tables
+Assessor (Inhered DateTimeRecord, UserRecord)
+- name
+- phone number
+- linked user (OTO)
+
+# Admin view setup
+
+6.
+# We need to create a module that keep all the insurance claims detail and
+tables together.
+We will call this module claims.
+
+# What do we need to log?
+- Client info
+Will store all the client info.
+- Claim Case
+Will store all the claims and related info.
+Need to add function/method to
+    - create a case directory in the media folder
+- Document info
+Will store all the document info linked to a claim/case.
+
+# DB Tables
+Client (Inhered DateTimeRecord, UserRecord)
+- client number
+- name
+- phone number
+- address
+
+Case (Inhered DateTimeRecord, UserRecord)
+- case_number
+- status
+- open date
+- close date
+- insurance (FK)
+- insurance_consultant (FK)
+- assessor (FK)
+- client (FK)
+- description
+- resolution
+
+Document (Inhered DateTimeRecord, UserRecord)
+- document_type
+- name
+- file_name
+- case (FK)
+
+# Admin view setup
+
+7.
+# We need a Api module that create an api endpoint for external applications.
+We will setup Django-Flask.
+We will create a APIView to obtain an auth-token with custom functions to
+add the api user login to the existing UserLogging table.
+We will call this module api.
+
+# What endpoints do we need?
+Not sure yet. We are waining for feedback. But we will add the setup to save
+time later.
+
+# What do we need to log?
+- Api log data.
+Will store all the api request and response data.
+Need to add function/method to
+    - log request
+    - log response
+But we will add this table to the logs module to keep all the log tables
+together.
+
+# DB Tables
+Api Logging (Inhered DateTimeRecord)
+- user (FK)
+- status
+- method
+- path
+- ip address
+- host
+- cookie
+- params
+
+# Admin view setup
+
+8.
+# We need to add SMS and Web call functions.
+For now we will do the SMS functions.
+We will do Web call functions later.
+We will use Twilio, as they are the easiest to setup and will save time.
+At first I wanted to create a module for all the Twilio functions, but
+decided I will hold back on that. It will be a real empty module and it is
+not worth it. Maybe later with more functionality.
+
+# What do we need to log?
+- SMS log data.
+Will store all the sms data.
+But we will add this table to the logs module to keep all the log tables
+together.
+Need to add function/method to
+    - send an sms and it must automatically log the sms data.
+
+# DB Tables
+Sms Logging (Inhered DateTimeRecord)
+- user (FK)
+- from number
+- to number
+- message
+- sms id
+
+# Admin view setup

@@ -2,7 +2,7 @@ import logging
 
 from django.shortcuts import render, redirect
 
-from gen_lib.functions import get_client_session_id
+from gen_lib.utils import get_client_session_id
 
 log = logging.getLogger(__name__)
 

@@ -1,13 +1,16 @@
+import logging
 from datetime import datetime
 
 from django.db import models
 
-from cases.defines import CASE_STATUS, CASE_DOCUMENT_TYPE
+from claims.defines import CASE_STATUS, CASE_DOCUMENT_TYPE
 from gen_lib.abstract_datetime import DateTimeRecord
 from gen_lib.abstract_user import UserRecord
 from insurance_assessor.models import Assessor
 from insurance_companies.models import Insurance, InsuranceConsultant
 from interview_exercise.settings import MEDIA_ROOT
+
+log = logging.getLogger(__name__)
 
 
 class Client(DateTimeRecord, UserRecord):
@@ -85,8 +88,8 @@ class Case(DateTimeRecord, UserRecord):
         if not os.path.exists(directory):
             try:
                 os.makedirs(directory)
-            except OSError as e:
-                pass
+            except OSError as err:
+                log.error(err)
         return directory
 
     def case_directory_path(instance, filename):
