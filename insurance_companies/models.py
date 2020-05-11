@@ -7,7 +7,7 @@ from gen_lib.abstract_user import UserRecord
 
 class Insurance(DateTimeRecord, UserRecord):
     name = models.CharField('Name', db_column='name', unique=True,
-                             max_length=50, db_index=True)
+                            max_length=50, db_index=True)
     phone_number = models.CharField('Phone Number', db_column='phone_number',
                                     max_length=15, blank=True, null=True)
 
