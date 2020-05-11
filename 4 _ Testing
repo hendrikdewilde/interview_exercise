@@ -3,4 +3,8 @@ acceptance testing, design implementation testing.
 
 Still a working progress.
 
-To do: utils and validators
+The following test are done:
+Utils functions
+Validators functions
+Default Admin Groups [AUTHENTICATION AND AUTHORIZATION] module
+Insurance_assessor module
