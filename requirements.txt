@@ -14,3 +14,7 @@ passlib==1.7.1
 cryptography==2.6.1
 twilio==6.21.0
 urllib3==1.24.2
+lxml==3.2.3
+defusedxml==0.4.1
+django-tastypie==0.14.2
+django-nose==1.4.6

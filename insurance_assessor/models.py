@@ -26,3 +26,13 @@ class Assessor(DateTimeRecord, UserRecord):
 
     def __unicode__(self):
         return "{} [{}]".format(self.name, self.linked_user.username)
+
+    def phone_number_valid(self):
+        from gen_lib.utils import strip_non_ascii, strip_non_numeric
+
+        temp_phone_number = self.phone_number.replace('(', '')
+        temp_phone_number = temp_phone_number.replace(')', '')
+        temp_phone_number = temp_phone_number.replace('+', '')
+        temp_phone_number = strip_non_ascii(temp_phone_number)
+        temp_phone_number = strip_non_numeric(temp_phone_number)
+        return temp_phone_number

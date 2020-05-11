@@ -1,5 +1,6 @@
 import base64
 import logging
+import re
 
 from datetime import datetime, date, timedelta
 from django.contrib.auth.models import User
@@ -34,6 +35,10 @@ def strip_non_ascii(string):
         if 0 < ord(c) < 127:
             strip = '{0}{1}'.format(strip, c)
     return '{0}'.format(strip)
+
+
+def strip_non_numeric(string):
+    return re.sub('[^0-9]', '', string)
 
 
 def dict_fetch_all(cursor):

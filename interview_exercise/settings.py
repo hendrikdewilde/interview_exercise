@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -90,8 +92,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': os.path.join(BASE_DIR, 'test.db.sqlite3'),
+                },
     }
 }
+# if 'test' in sys.argv and 'keepdb' in sys.argv:
+#     # and this allows you to use --keepdb to skip re-creating the db,
+#     # even faster!
+#     DATABASES['default']['TEST']['ENGINE'] = 'django.db.backends.sqlite3'
+#     DATABASES['default']['TEST']['NAME'] = 'test.db.sqlite3'
 
 
 # Password validation
