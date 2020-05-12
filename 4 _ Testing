@@ -1,10 +1,13 @@
 Functional testing like integration testing, unit testing, system testing,
 acceptance testing, design implementation testing.
 
-Still a working progress.
-
 The following test are done:
 Utils functions
 Validators functions
 Default Admin Groups [AUTHENTICATION AND AUTHORIZATION] module
 Insurance_assessor module
+Insurance_companies module
+
+Still to do:
+Logs module
+Claims module
