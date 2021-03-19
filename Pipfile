@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-djangorestframework = "==3.10.2"
+djangorestframework = "==3.11.2"
 djangorestframework-stubs = "==0.4.2"
 pytz = "==2018.9"
 holidays = "==0.9.5"
